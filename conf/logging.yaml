@@ -1,0 +1,45 @@
+version: 1.0
+disable_existing_loggers: false
+
+formatters:
+  simple:
+    format: "%(asctime)s - %(levelname)s - %(filename)s - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+  complete:
+    format: "%(asctime)s - %(levelname)s - %(name)s - pid:%(process)d - %(filename)s:%(lineno)d - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+
+  file_info_rotating:
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
+    formatter: complete
+    filename: project-dummy.log
+    maxBytes: 10485760
+    backupCount: 10
+    encoding: utf8
+
+  file_info_timed_rotating:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: complete
+    filename: project-dummy_all.log
+    when: 'S'
+    interval: 1
+    backupCount: 10
+    encoding: utf8
+
+loggers:
+  project_dummy:
+    level: INFO
+    handlers: [ console, file_info_rotating ]
+
+root:
+  level: DEBUG
+  handlers: [ console ]

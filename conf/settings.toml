@@ -1,0 +1,13 @@
+[default]
+project_name = "project-dummy"
+debug = false
+version = "v0.1"
+allowed_hosts = ["*"]
+
+[development]
+project_dir = "/home/guoxy/workspace/python/project-dummy"
+log_path = "/home/guoxy/workspace/python/project-dummy/logs"
+
+[production]
+project_dir = "/opt/project-dummy"
+log_path = "/var/log/project-dummy"
